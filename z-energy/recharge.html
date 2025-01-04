@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Energy Recharge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        #page1, #page2 {
+            display: none;
+            padding: 0px;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .balance {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .text-box {
+            padding: 15px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 15px;
+            justify-items: center;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .button {
+            padding: 15px;
+            background-color: teal;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: darkcyan;
+        }
+
+        .account-container {
+            border: 1px solid teal;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .account-container p {
+            margin: 10px 0;
+        }
+
+        .countdown {
+            font-size: 1.8em;
+            color: red;
+            text-align: center;
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #008e87;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .menu-item img {
+            width: 40px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .button {
+                width: 90%;
+            }
+
+            .menu-item img {
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button {
+                font-size: 1em;
+                padding: 12px;
+            }
+
+            .menu-item img {
+                width: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- First Screen -->
+<div id="page1">
+<!-- Header Section -->
+<div class="header">
+    <img src="C:\Users\ENO AKPAN\Pictures\Screenshots\1x\Z ENERGY.png" alt="Z-Energy Logo">
+    <div class="balance">BALANCE: ₦0.00</div>
+</div>
+
+    <input type="number" id="amountInput" class="text-box" placeholder="Please type amount">
+    <p id="minAmountText">Minimum recharge: ₦2,000</p>
+
+    <div class="grid-container">
+        <button class="button" onclick="autoFill(2000)">₦2,000</button>
+        <button class="button" onclick="autoFill(4000)">₦4,000</button>
+        <button class="button" onclick="autoFill(6000)">₦6,000</button>
+        <button class="button" onclick="autoFill(8000)">₦8,000</button>
+        <button class="button" onclick="autoFill(16000)">₦16,000</button>
+        <button class="button" onclick="autoFill(32000)">₦32,000</button>
+        <button class="button" onclick="autoFill(62000)">₦62,000</button>
+        <button class="button" onclick="autoFill(128000)">₦128,000</button>
+        <button class="button" onclick="autoFill(256000)">₦256,000</button>
+    </div>
+
+    <button class="button" onclick="recharge()">RECHARGE</button>
+</div>
+
+<!-- Second Screen -->
+<div id="page2">
+<!-- Header Section -->
+<div class="header">
+    <img src="C:\Users\ENO AKPAN\Pictures\Screenshots\1x\Z ENERGY.png" alt="Z-Energy Logo">
+    <div class="balance">BALANCE: ₦0.00</div>
+</div>
+
+    <div class="account-container">
+        <p><strong>ACCOUNT DETAILS</strong></p>
+        <p>Kindly make your payment to this account</p>
+        <p class="countdown" id="timer">24:00</p>
+        <p>Bank name: Z-energy</p>
+        <p>Account name: Z-power</p>
+        <p>Account number: 1234567890</p>
+        <p>Amount: ₦<span id="amountDisplay"></span></p>
+
+        <button class="button" onclick="backToRecharge()">I have made payment</button>
+    </div>
+</div>
+
+<!-- Bottom Menu -->
+<div class="bottom-menu">
+    <div class="menu-item" onclick="navigateTo('homepage.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b1.png" alt="Home Icon">
+        <span>HOME</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('order.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b2.png" alt="Order Icon">
+        <span>ORDER</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('recharge.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b3.png" alt="Recharge Icon">
+        <span>RECHARGE</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('refer.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b5.png" alt="Refer Icon">
+        <span>REFER</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('profile.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b4.png" alt="Profile Icon">
+        <span>PROFILE</span>
+    </div>
+</div>
+
+<script>
+        function navigateTo(page) {
+        window.location.href = page;
+    }
+
+    let amount = 0;
+    let countdown;
+
+    function autoFill(value) {
+        document.getElementById("amountInput").value = value;
+    }
+
+    function recharge() {
+        const minAmountText = document.getElementById("minAmountText");
+        amount = parseInt(document.getElementById("amountInput").value);
+
+        if (isNaN(amount) || amount < 2000) {
+            minAmountText.style.color = 'red';
+        } else {
+            minAmountText.style.color = 'black';
+            document.getElementById("page1").style.display = 'none';
+            document.getElementById("page2").style.display = 'block';
+            document.getElementById("amountDisplay").innerText = amount;
+            startTimer();
+        }
+    }
+
+    function startTimer() {
+        let timeLeft = 24 * 60 * 60;
+        countdown = setInterval(() => {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById("timer").innerText = `${hours}:${minutes}:${seconds}`;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(countdown);
+                document.getElementById("timer").innerText = "00:00";
+            }
+        }, 1000);
+    }
+
+    function backToRecharge() {
+        clearInterval(countdown);
+        document.getElementById("page1").style.display = 'block';
+        document.getElementById("page2").style.display = 'none';
+    }
+
+    document.getElementById("page1").style.display = 'block';
+</script>
+
+</body>
+</html>

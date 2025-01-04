@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .balance {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .text-box {
+            padding: 15px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid black;
+        }
+
+        .info {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 15px;
+            justify-items: center;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .button {
+            padding: 15px;
+            background-color: teal;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: darkcyan;
+        }
+
+        .notice {
+            margin: 20px 0;
+            font-size: 0.9em;
+            color: black;
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #008e87;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .menu-item img {
+            width: 40px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .button {
+                width: 90%;
+            }
+
+            .menu-item img {
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button {
+                font-size: 1em;
+                padding: 12px;
+            }
+
+            .menu-item img {
+                width: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<div class="header">
+    <img src="C:\Users\ENO AKPAN\Pictures\Screenshots\1x\Z ENERGY.png" alt="Z-Energy Logo">
+    <div class="balance">BALANCE: ₦0.00</div>
+</div>
+
+<!-- Withdrawal Input Section -->
+<input type="number" id="amountInput" class="text-box" placeholder="Please type amount">
+<p class="info">Withdrawal fee: 20%<br>Minimum recharge: ₦2,000</p>
+
+<!-- Grid of Withdrawal Amounts -->
+<div class="grid-container">
+    <button class="button" data-amount="2000">₦2,000</button>
+    <button class="button" data-amount="4000">₦4,000</button>
+    <button class="button" data-amount="6000">₦6,000</button>
+    <button class="button" data-amount="8000">₦8,000</button>
+    <button class="button" data-amount="16000">₦16,000</button>
+    <button class="button" data-amount="32000">₦32,000</button>
+    <button class="button" data-amount="62000">₦62,000</button>
+    <button class="button" data-amount="128000">₦128,000</button>
+    <button class="button" data-amount="256000">₦256,000</button>
+</div>
+
+<!-- Withdraw Button -->
+<button class="button" id="withdrawButton">WITHDRAW</button>
+<p class="notice">This may take up to 48 hours</p>
+
+<!-- Bottom Menu -->
+<div class="bottom-menu">
+    <div class="menu-item" onclick="navigateTo('homepage.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b1.png" alt="Home Icon">
+        <span>HOME</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('order.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b2.png" alt="Order Icon">
+        <span>ORDER</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('recharge.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b3.png" alt="Recharge Icon">
+        <span>RECHARGE</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('refer.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b5.png" alt="Refer Icon">
+        <span>REFER</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('profile.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b4.png" alt="Profile Icon">
+        <span>PROFILE</span>
+    </div>
+</div>
+
+<script>
+        function navigateTo(page) {
+        window.location.href = page;
+    }
+    // Handle preset withdrawal amount buttons
+    document.querySelectorAll('.grid-container .button').forEach(button => {
+        button.addEventListener('click', () => {
+            const amount = button.getAttribute('data-amount');
+            document.getElementById('amountInput').value = amount;
+        });
+    });
+
+    // Handle withdraw button click
+    document.getElementById('withdrawButton').addEventListener('click', () => {
+        const amount = document.getElementById('amountInput').value;
+        if (!amount || amount < 2000) {
+            alert('Please enter an amount of ₦2,000 or more.');
+            return;
+        }
+
+        const fee = amount * 0.2;
+        const finalAmount = amount - fee;
+    });
+</script>
+
+</body>
+</html>

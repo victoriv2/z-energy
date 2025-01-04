@@ -1,0 +1,185 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Energy Power Station</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .balance {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .id {
+            text-align: left;
+            font-size: 16px;
+            margin-top: 5px;
+            padding: 10px 20px;
+        }
+
+        /* Central Grid Section */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            padding: 20px;
+        }
+
+        .grid-item {
+            text-align: center;
+        }
+
+        .grid-item img {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto; /* Centers the image horizontally */
+            display: block; /* Ensures the image behaves as a block-level element for centering */
+            margin-bottom: 10px;
+        }
+
+        .grid-item label {
+            font-size: 14px;
+            color: #000;
+            font-weight: bold;
+            text-align: center; /* Center the label */
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #008e87;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .menu-item img {
+            width: 40px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-item img {
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-item img {
+                width: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <div class="logo">
+            <img src="C:\Users\ENO AKPAN\Pictures\Screenshots\1x\Z ENERGY.png" alt="Z-Energy Logo">
+        </div>
+        <div class="balance">BALANCE: ₦0.00</div>
+    </div>
+    <div class="id">ID: 00123456789</div>
+
+    <!-- Central Grid Section -->
+    <div class="grid">
+        <div class="grid-item" onclick="navigateTo('withdrawal.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\s1.png" alt="Withdraw">
+            <label>Withdraw</label>
+        </div>
+        <div class="grid-item" onclick="navigateTo('bank info.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\s4.png" alt="My Bank Info">
+            <label>My Bank Info</label>
+        </div>
+        <div class="grid-item" onclick="navigateTo('no.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\s3.png" alt="Payment History">
+            <label>Payment History</label>
+        </div>
+        <div class="grid-item">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\s5.png" alt="Settings">
+            <label>Settings</label>
+        </div>
+        <div class="grid-item" onclick="navigateTo('https://t.me/your_telegram_link')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\s2.png" alt="Customer Support">
+            <label>Customer Support</label>
+        </div>        
+        <div class="grid-item" onclick="navigateTo('index.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\s6.png" alt="Log Out">
+            <label>Log Out</label>
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
+    <div class="bottom-menu">
+        <div class="menu-item" onclick="navigateTo('homepage.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b1.png" alt="Home Icon">
+            <span>HOME</span>
+        </div>
+        <div class="menu-item" onclick="navigateTo('order.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b2.png" alt="Order Icon">
+            <span>ORDER</span>
+        </div>
+        <div class="menu-item" onclick="navigateTo('recharge.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b3.png" alt="Recharge Icon">
+            <span>RECHARGE</span>
+        </div>
+        <div class="menu-item" onclick="navigateTo('refer.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b5.png" alt="Refer Icon">
+            <span>REFER</span>
+        </div>
+        <div class="menu-item" onclick="navigateTo('profile.html')">
+            <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b4.png" alt="Profile Icon">
+            <span>PROFILE</span>
+        </div>
+    </div>
+
+    <script>
+        // Navigate to a specified page
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Update the ID section with the user's mobile number from local storage
+        function updateUserId() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                const userIdElement = document.querySelector('.id');
+                userIdElement.textContent = `ID: ${loggedInUser}`;
+            }
+        }
+
+        // Call the function on page load
+        updateUserId();
+    </script>
+</body>
+</html>

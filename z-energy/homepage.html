@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Energy Platform</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        /* Scrollable section */
+        .content-container {
+            overflow-y: auto;
+            height: calc(90vh - 80px); /* Adjust height to exclude bottom menu */
+        }
+
+        /* Header */
+        .header {
+            background-color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .balance {
+            font-weight: bold;
+            color: black;
+            margin-right: 10px;
+        }
+
+        /* Image banner */
+        .banner img {
+            width: 100%;
+        }
+
+        /* Product container */
+        .product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .product img {
+            height: 100px;
+            width: 70px;
+            border-radius: 8px;
+        }
+
+        .product-info {
+            flex: 1;
+            padding-left: 10px;
+        }
+
+        .product-info h3 {
+            margin: 0;
+            font-size: 18px;
+            color: black;
+        }
+
+        .product-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .purchase-btn {
+            background-color: #008e87;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .purchase-btn:hover {
+            background-color: #006f6d;
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #008e87;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .menu-item img {
+            width: 40px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-item img {
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-item img {
+                width: 25px;
+            }
+        }
+
+        .product img {
+            width: 50px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+        }
+
+        .product-info p {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<div class="header">
+    <img src="C:\Users\ENO AKPAN\Pictures\Screenshots\1x\Z ENERGY.png" alt="Z-Energy Logo">
+    <div class="balance">BALANCE: ₦0.00</div>
+</div>
+
+<!-- Scrollable content section -->
+<div class="content-container">
+    <!-- Banner image -->
+    <div class="banner">
+        <img src="C:\Users\ENO AKPAN\Pictures\Screenshots\1x\Z ENERGY BACKGROUND.png" alt="Wind Turbine Banner">
+    </div>
+
+    <!-- Products -->
+    <div class="product">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\p1.png" alt="Product Image">
+        <div class="product-info">
+            <h3>Product 1</h3>
+            <p>Price: ₦8,000</p>
+            <p>Duration: 48 days</p>
+            <p>Daily Income: ₦500</p>
+            <p>Total Revenue: ₦24,000</p>
+        </div>
+        <button class="purchase-btn">Purchase now</button>
+    </div>
+
+    <div class="product">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\p2.png" alt="Product Image">
+        <div class="product-info">
+            <h3>Product 2</h3>
+            <p>Price: ₦16,000</p>
+            <p>Duration: 48 days</p>
+            <p>Daily Income: ₦1,000</p>
+            <p>Total Revenue: ₦48,000</p>
+        </div>
+        <button class="purchase-btn">Purchase now</button>
+    </div>
+
+    <div class="product">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\p3.png" alt="Product Image">
+        <div class="product-info">
+            <h3>Product 3</h3>
+            <p>Price: ₦32,000</p>
+            <p>Duration: 48 days</p>
+            <p>Daily Income: ₦2,000</p>
+            <p>Total Revenue: ₦96,000</p>
+        </div>
+        <button class="purchase-btn">Purchase now</button>
+    </div>
+
+    <div class="product">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\p4.png" alt="Product Image">
+        <div class="product-info">
+            <h3>Product 4</h3>
+            <p>Price: ₦64,000</p>
+            <p>Duration: 48 days</p>
+            <p>Daily Income: ₦4,000</p>
+            <p>Total Revenue: ₦192,000</p>
+        </div>
+        <button class="purchase-btn">Purchase now</button>
+    </div>
+
+    <div class="product">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\p5.png" alt="Product Image">
+        <div class="product-info">
+            <h3>Product 5</h3>
+            <p>Price: ₦128,000</p>
+            <p>Duration: 48 days</p>
+            <p>Daily Income: ₦8,000</p>
+            <p>Total Revenue: ₦384,000</p>
+        </div>
+        <button class="purchase-btn">Purchase now</button>
+    </div>
+
+    <div class="product">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\p6.png" alt="Product Image">
+        <div class="product-info">
+            <h3>Product 6</h3>
+            <p>Price: ₦256,000</p>
+            <p>Duration: 48 days</p>
+            <p>Daily Income: ₦16,000</p>
+            <p>Total Revenue: ₦768,000</p>
+        </div>
+        <button class="purchase-btn">Purchase now</button>
+    </div>
+</div>
+
+<!-- Bottom Menu -->
+<div class="bottom-menu">
+    <div class="menu-item" onclick="navigateTo('homepage.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b1.png" alt="Home Icon">
+        <span>HOME</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('order.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b2.png" alt="Order Icon">
+        <span>ORDER</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('recharge.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b3.png" alt="Recharge Icon">
+        <span>RECHARGE</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('refer.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b5.png" alt="Refer Icon">
+        <span>REFER</span>
+    </div>
+    <div class="menu-item" onclick="navigateTo('profile.html')">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\b4.png" alt="Profile Icon">
+        <span>PROFILE</span>
+    </div>
+</div>
+
+<script>
+    // Redirect to recharge.html when purchase buttons are clicked
+    document.addEventListener("DOMContentLoaded", function() {
+        const purchaseButtons = document.querySelectorAll(".purchase-btn");
+        purchaseButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                window.location.href = "recharge.html";
+            });
+        });
+    });
+
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+</script>
+
+</body>
+</html>

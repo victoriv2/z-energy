@@ -1,0 +1,239 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Platform</title>
+    <style>
+        body {
+            background-color: #008e87;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 320px;
+            background-color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .header img {
+            width: 200px;
+            margin-bottom: 0px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #008e87;
+            border-radius: 25px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #008e87;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007a78;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tabs div {
+            margin: 0 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            color: #008e87;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tabs .active {
+            border-bottom: 2px solid #008e87;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 21px;
+            cursor: pointer;
+            color: #008e87;
+            font-weight: bold;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 20%;
+        }
+
+        .message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="C:\Users\ENO AKPAN\Documents\Bluetooth\z energy\Z ENERGY.png" alt="Logo">
+    </div>
+
+    <div class="tabs">
+        <div id="sign-in-tab" class="active" onclick="showSignIn()">SIGN IN</div>
+        <div id="sign-up-tab" onclick="showSignUp()">SIGN UP</div>
+    </div>
+
+    <div id="sign-in-form">
+        <input type="text" placeholder="Mobile Number" id="sign-in-mobile">
+        <div class="password-container">
+            <button class="toggle-password" onclick="togglePassword('sign-in-password', this)">Show</button>
+            <input type="password" placeholder="Password" id="sign-in-password">
+        </div>
+        <button onclick="login()">LOG IN</button>
+    </div>
+
+    <div id="sign-up-form" style="display: none;">
+        <input type="text" placeholder="Mobile Number" id="sign-up-mobile">
+        <div class="password-container">
+            <button class="toggle-password" onclick="togglePassword('sign-up-password', this)">Show</button>
+            <input type="password" placeholder="Password" id="sign-up-password">
+        </div>
+        <input type="text" placeholder="Invitation Code (Optional)" id="invitation-code">
+        <button onclick="register()">REGISTER</button>
+    </div>
+</div>
+
+<script>
+    function showSignIn() {
+        document.getElementById('sign-in-tab').classList.add('active');
+        document.getElementById('sign-up-tab').classList.remove('active');
+        document.getElementById('sign-in-form').style.display = 'block';
+        document.getElementById('sign-up-form').style.display = 'none';
+    }
+
+    function showSignUp() {
+        document.getElementById('sign-up-tab').classList.add('active');
+        document.getElementById('sign-in-tab').classList.remove('active');
+        document.getElementById('sign-in-form').style.display = 'none';
+        document.getElementById('sign-up-form').style.display = 'block';
+    }
+
+    function togglePassword(id, button) {
+        const input = document.getElementById(id);
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "Hide";
+        } else {
+            input.type = "password";
+            button.textContent = "Show";
+        }
+    }
+
+    function login() {
+        const mobile = document.getElementById('sign-in-mobile').value.trim();
+        const password = document.getElementById('sign-in-password').value.trim();
+
+        if (mobile.length !== 11) {
+            displayMessage("sign-in-form", "Mobile number must be exactly 11 digits.");
+            return;
+        }
+
+        if (password.length < 6) {
+            displayMessage("sign-in-form", "Password must be at least 6 characters long.");
+            return;
+        }
+
+        const userData = JSON.parse(localStorage.getItem(mobile));
+
+        if (userData) {
+            if (userData.password === password) {
+                localStorage.setItem("loggedInUser", mobile); // Save logged-in user
+                window.location.href = "homepage.html"; // Redirect to homepage
+            } else {
+                displayMessage("sign-in-form", "Incorrect password. Please try again.");
+            }
+        } else {
+            displayMessage("sign-in-form", "Mobile number not registered.");
+        }
+    }
+
+    function register() {
+        const mobile = document.getElementById('sign-up-mobile').value.trim();
+        const password = document.getElementById('sign-up-password').value.trim();
+
+        if (mobile.length !== 11) {
+            displayMessage("sign-up-form", "Mobile number must be exactly 11 digits.");
+            return;
+        }
+
+        if (password.length < 6) {
+            displayMessage("sign-up-form", "Password must be at least 6 characters long.");
+            return;
+        }
+
+        if (!mobile || !password) {
+            displayMessage("sign-up-form", "Please fill in all required fields.");
+            return;
+        }
+
+        if (localStorage.getItem(mobile)) {
+            displayMessage("sign-up-form", "Mobile number already taken. Please use a different number.");
+            return;
+        }
+
+        const userData = {
+            password,
+            invitationCode: document.getElementById('invitation-code').value.trim() || null
+        };
+
+        localStorage.setItem(mobile, JSON.stringify(userData));
+        localStorage.setItem("loggedInUser", mobile); // Save logged-in user
+        window.location.href = "homepage.html"; // Redirect to homepage
+    }
+
+    function displayMessage(formId, message) {
+        const form = document.getElementById(formId);
+        let messageDiv = form.querySelector(".message");
+        if (!messageDiv) {
+            messageDiv = document.createElement("div");
+            messageDiv.className = "message";
+            form.appendChild(messageDiv);
+        }
+        messageDiv.textContent = message;
+    }
+</script>
+
+</body>
+</html>
